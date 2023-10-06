@@ -15,9 +15,22 @@
   src: url(./fonts/Poppins/Poppins-Bold.ttf);
 }
 
+@mixin box-shadow() {
+  box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.1);
+}
+
+@mixin column($gap: 2rem) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
 :root {
   --main-clr: #132577;
 }
+
+$mobile: 768px;
+$tablet: 1200px;
 
 * {
   margin: 0;
@@ -27,9 +40,7 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
+  @include column(4rem);
 }
 
 img {
@@ -50,6 +61,7 @@ h2 {
 
 h3 {
   font: 24px main-medium;
+  color: var(--main-clr);
 }
 
 p {
@@ -71,7 +83,6 @@ button {
 
 li {
   list-style: none;
-  all: inset;
 }
 
 .container {
@@ -90,7 +101,6 @@ nav.desktop {
   grid-area: 1/1/2/13;
   justify-self: end;
   ul {
-    list-style: none;
     gap: 2rem;
   }
   li {
@@ -103,9 +113,7 @@ nav.desktop {
 nav.mobile {
   position: absolute;
   ul {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    @include column();
   }
   li {
     color: #000;
@@ -126,11 +134,7 @@ nav.mobile {
   top: 3rem;
 }
 
-.close {
-  text-align: start;
-}
-
-@media (max-width: 768px) {
+@media (max-width: $mobile) {
   nav.desktop {
     display: none;
   }
@@ -139,7 +143,7 @@ nav.mobile {
   }
 }
 
-@media (width > 768px) {
+@media (width > $mobile) {
   nav.mobile {
     display: none;
   }
@@ -150,34 +154,34 @@ nav.mobile {
 
 #hero {
   min-height: 100vh;
-  background-image: url(./imgs/hero-bg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: {
+    image: url(./imgs/hero-bg.png);
+    repeat: no-repeat;
+    size: cover;
+  }
   color: #fff;
   padding: 2rem 0;
   .container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 150px 150px 300px 300px;
+    grid-template-rows: repeat(2, 150px) repeat(2, 300px);
   }
   main {
     grid-area: 2/1/4/6;
-    flex-direction: column;
+    @include column();
     align-self: center;
-    gap: 2rem;
     flex-basis: 40%;
-    align-self: center;
   }
   .img-wrapper {
     grid-area: 2/8/4/13;
+    align-self: center;
   }
   img {
     object-fit: cover;
   }
   button {
     background-color: #fff;
-    font-family: main-semibold;
-    font-size: 16px;
+    font: 16px main-semibold;
     text-transform: uppercase;
     color: #000;
     &:hover {
@@ -189,63 +193,58 @@ nav.mobile {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: $tablet) {
   #hero {
     .container {
-      grid-template-rows: 150px 250px 250px 250px;
+      grid-template-rows: 100px repeat(2, auto) 400px;
+      gap: 2rem;
     }
     .img-wrapper {
-      grid-area: 2/1/4/13;
+      grid-area: 2/2/4/12;
       justify-self: center;
-      align-self: start;
-    }
-    img {
-      max-width: 100%;
     }
     main {
-      grid-area: 4/1/6/13;
-      align-self: center;
-      text-align: center;
+      grid-area: 4/2/5/12;
       align-items: center;
+      text-align: center;
     }
   }
 }
 
 #services {
   .container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    @include column();
     text-align: center;
   }
   .container > h3 {
     color: #000;
     font-family: main-bold;
   }
-
+  h3 {
+    color: #000;
+  }
   p {
     font: 14px main-reqular;
   }
   .container .flex {
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 2rem;
   }
   .card {
+    flex-basis: 23%;
     position: relative;
     text-align: start;
-    display: flex;
-    flex-direction: column;
+    @include column();
     justify-content: space-between;
-    gap: 2rem;
-    min-width: 250px;
     min-height: 220px;
     padding: 3rem;
-    border: 1px solid transparent;
     border-radius: 5px;
-    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.1);
+    @include box-shadow();
   }
   .card:hover {
     background-color: var(--main-clr);
-    color: #fff;
+    color: #fff !important;
   }
   a {
     display: inline;
@@ -258,23 +257,9 @@ nav.mobile {
   }
 }
 
-@media (max-width: 1200px) {
-  #services .container .flex {
-    justify-content: space-around;
-    flex-wrap: wrap;
-    div {
-      flex-basis: 20%;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  #services .container .flex {
+@media (max-width: $mobile) {
+  #services .flex {
     flex-direction: column;
-    div {
-      width: 80%;
-      margin: 0 auto;
-    }
   }
 }
 
@@ -289,16 +274,13 @@ nav.mobile {
     color: #000;
   }
   p {
-    font: 14px;
+    font-size: 14px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile) {
   #rates .container {
-    flex-direction: column;
-    div {
-      margin: 1rem auto;
-    }
+    @include column(4rem);
   }
 }
 
@@ -311,16 +293,13 @@ nav.mobile {
     flex-basis: 45%;
   }
   .text {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    @include column();
     > p {
       color: #666;
       font-size: 14px;
       line-height: 2.5;
     }
   }
-
   .bullets {
     display: flex;
     flex-wrap: wrap;
@@ -331,28 +310,22 @@ nav.mobile {
       margin-bottom: 1rem;
     }
   }
-
-  .imgs {
-    flex-basis: 40%;
-  }
-
   img:nth-child(2) {
     margin-top: -15rem;
     margin-left: -5rem;
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: $tablet) {
   #about .container {
     flex-direction: column-reverse;
     .text {
       text-align: center;
     }
     .imgs {
-      width: 90%;
-      margin: 0 auto;
+      align-self: center;
       img {
-        width: 90%;
+        width: 80%;
       }
       img:nth-child(2) {
         margin-left: 4rem;
@@ -361,11 +334,9 @@ nav.mobile {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile) {
   #about .bullets {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    @include column();
     align-items: center;
   }
 }
@@ -379,7 +350,7 @@ nav.mobile {
     text-align: center;
     font: 24px main-medium;
     color: var(--main-clr);
-    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.1);
+    @include box-shadow();
     border-radius: 5px;
     padding: 1rem;
     &:hover {
@@ -388,7 +359,6 @@ nav.mobile {
   }
   .active {
     border: 2px solid var(--main-clr);
-    text-transform: capitalize;
   }
   .container {
     > h2,
@@ -396,13 +366,11 @@ nav.mobile {
       text-align: center;
     }
     h3 {
-      color: var(--main-clr);
       text-transform: capitalize;
     }
     h2 {
       margin: 2rem 0;
     }
-    gap: 1.5rem;
     div {
       justify-content: space-between;
       gap: 1rem;
@@ -417,19 +385,17 @@ nav.mobile {
   }
   img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   figcaption {
-    flex-shrink: 1.1;
-    display: flex;
-    flex-direction: column;
+    @include column(1rem);
     align-self: center;
-    gap: 1rem;
   }
-
   h3 {
     font: 24px main-medium;
   }
-
   p {
     font: 14px main-regular;
     color: #666;
@@ -442,7 +408,13 @@ nav.mobile {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $tablet) {
+  figcaption {
+    flex-shrink: 1.8;
+  }
+}
+
+@media (max-width: $mobile) {
   #findout {
     .container .flex {
       flex-direction: column;
@@ -453,8 +425,8 @@ nav.mobile {
       transform: rotate(0);
     }
     figure {
-      align-self: center;
       align-items: center;
+      align-self: center;
     }
     figcaption {
       text-align: center;
@@ -465,11 +437,8 @@ nav.mobile {
 
 #testimonials {
   text-align: center;
-  h3 {
-    color: var(--main-clr);
-  }
   h2 {
-    font: 28px main-bold;
+    font-family: main-bold;
     margin: 2rem 0;
   }
   img[src*="rate"],
@@ -482,17 +451,14 @@ nav.mobile {
     gap: 2rem;
   }
 
-  .container div div {
+  .card {
     position: relative;
     padding: 3rem;
     padding-bottom: 11rem;
     margin-bottom: 14rem;
-    display: flex;
-    flex-direction: column;
+    @include column();
     justify-content: center;
-    gap: 2rem;
-    border: 1px solid transparent;
-    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.1);
+    @include box-shadow();
   }
   figure {
     position: absolute;
@@ -501,59 +467,35 @@ nav.mobile {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: $mobile) {
   #testimonials .container .flex {
     flex-wrap: wrap;
-  }
-  figure {
-    align-self: center;
   }
 }
 
 #projects {
-  h3 {
-    color: var(--main-clr);
-  }
   .container {
     display: flex;
     gap: 2rem;
+    justify-content: space-between;
     div {
-      flex-basis: 50%;
+      flex-basis: 45%;
     }
   }
   .imgs {
     display: grid;
-    gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
     img {
       object-fit: cover;
       height: 100%;
     }
-
-    img:nth-child(1) {
-      grid-area: 1/1/2/2;
-    }
-
-    img:nth-child(2) {
-      grid-area: 2/2/3/3;
-    }
-
-    img:nth-child(3) {
-      grid-area: 2/1/3/2;
-    }
-
-    img:nth-child(4) {
-      grid-area: 1/2/2/3;
-    }
   }
   .text {
+    @include column();
     align-self: center;
-    gap: 2rem;
-    padding: 0 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 0 5%;
   }
   button:hover {
     background-color: #fff;
@@ -563,7 +505,7 @@ nav.mobile {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: $tablet) {
   #projects {
     .container {
       flex-direction: column;
@@ -571,31 +513,29 @@ nav.mobile {
     img {
       width: 100%;
     }
+    .text {
+      padding: 0;
+    }
   }
 }
 
 #team {
   text-align: center;
-  h3 {
-    color: var(--main-clr);
-  }
   h2 {
     margin: 2rem 0;
   }
-  .container > div {
+  .flex {
     justify-content: space-between;
     gap: 2rem;
   }
   figure {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    @include column();
+    @include box-shadow();
+    padding: 1rem;
     border-radius: 5px;
   }
   .links {
-    margin: 3rem 0;
+    margin: 1rem 0;
     justify-content: center;
     gap: 2rem;
     img:hover {
@@ -604,13 +544,18 @@ nav.mobile {
   }
 }
 
-@media (max-width: 1400px) {
-  #team .container .flex {
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  figure {
-    width: 80%;
+@media (max-width: $tablet) {
+  #team {
+    .flex {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    figure {
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 100%;
+    }
   }
   .text {
     align-self: center;
@@ -632,22 +577,28 @@ footer {
   h6 {
     font: 12px main-regular;
   }
-  li,
-  p {
-    list-style: none;
-    font: 14px main-regular;
-    margin-bottom: 10px;
-  }
   a {
     all: unset;
     display: block;
     color: #fff;
-    font: 14px main-regular;
     margin-bottom: 10px;
     &:hover {
       cursor: pointer;
     }
   }
+  li,
+  p,
+  a {
+    list-style: none;
+    font: 14px main-regular;
+    margin-bottom: 10px;
+  }
+  p {
+    display: flex;
+    align-items: center;
+    width: 25%;
+  }
+
   .top,
   .bottom {
     justify-content: space-between;
@@ -655,7 +606,7 @@ footer {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: $tablet) {
   footer .flex {
     flex-wrap: wrap;
     justify-content: space-between;
