@@ -85,6 +85,10 @@ li {
   list-style: none;
 }
 
+a {
+  all: unset;
+}
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -132,6 +136,9 @@ nav.mobile {
   position: absolute;
   right: 3rem;
   top: 3rem;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 @media (max-width: $mobile) {
@@ -244,7 +251,10 @@ nav.mobile {
   }
   .card:hover {
     background-color: var(--main-clr);
-    color: #fff !important;
+    cursor: pointer;
+    > * {
+      color: #fff !important;
+    }
   }
   a {
     display: inline;

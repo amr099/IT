@@ -73,6 +73,10 @@ li {
   list-style: none;
 }
 
+a {
+  all: unset;
+}
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -120,6 +124,10 @@ nav.mobile li {
   position: absolute;
   right: 3rem;
   top: 3rem;
+}
+.burger:hover,
+.close:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -231,6 +239,9 @@ nav.mobile li {
 }
 #services .card:hover {
   background-color: var(--main-clr);
+  cursor: pointer;
+}
+#services .card:hover > * {
   color: #fff !important;
 }
 #services a {
