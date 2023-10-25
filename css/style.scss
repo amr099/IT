@@ -120,8 +120,8 @@ a {
 }
 
 nav {
+  display: flex;
   padding: 2rem;
-  min-height: 10vh;
   margin-left: auto;
   gap: 2rem;
   justify-content: flex-end;
@@ -138,7 +138,6 @@ nav {
 
 @media (max-width: $tablet) {
   nav {
-    display: none;
     z-index: 1;
     width: 50%;
     position: absolute;
@@ -289,7 +288,7 @@ nav {
 }
 
 @media (max-width: $mobile) {
-  #services .flex {
+  .services .flex {
     flex-direction: column;
   }
 }
@@ -310,7 +309,7 @@ nav {
 }
 
 @media (max-width: $mobile) {
-  #rates .container {
+  .rates .container {
     @include column(4rem);
   }
 }
@@ -348,7 +347,7 @@ nav {
 }
 
 @media (max-width: $tablet) {
-  #about .container {
+  .about .container {
     flex-direction: column-reverse;
     .text {
       text-align: center;
@@ -366,7 +365,7 @@ nav {
 }
 
 @media (max-width: $mobile) {
-  #about .bullets {
+  .about .bullets {
     @include column();
     align-items: center;
   }
@@ -444,7 +443,7 @@ nav {
 }
 
 @media (max-width: $mobile) {
-  #findout {
+  .findout {
     .container .flex {
       flex-direction: column;
     }
@@ -503,7 +502,7 @@ nav {
 }
 
 @media (max-width: $mobile) {
-  #testimonials .container .flex {
+  .testimonials .container .flex {
     flex-wrap: wrap;
   }
 }
@@ -541,7 +540,7 @@ nav {
 }
 
 @media (max-width: $tablet) {
-  #projects {
+  .projects {
     .container {
       flex-direction: column;
     }
@@ -580,7 +579,7 @@ nav {
 }
 
 @media (max-width: $tablet) {
-  #team {
+  .team {
     .flex {
       flex-wrap: wrap;
       justify-content: space-around;
