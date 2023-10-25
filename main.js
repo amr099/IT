@@ -1,4 +1,5 @@
 $(()=>{
+
     const keys = ["mission","company","customer"]
 
     for(let key of keys){
@@ -13,10 +14,13 @@ $(()=>{
     }
 
     $('.burger').on('click',()=>{
-        $('nav.mobile').removeClass('hide')
+        $('nav').addClass('flex')
+        $('nav').removeClass('hide')
+
     })
 
     $('.close').on('click',()=>{
-        $('nav.mobile').addClass('hide')
+        $('nav').addClass('hide')
+
     })
 })
