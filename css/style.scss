@@ -38,6 +38,7 @@ $xsmall: 360px;
   padding: 0;
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -140,7 +141,7 @@ nav {
   nav {
     z-index: 1;
     width: 50%;
-    position: absolute;
+    position: fixed;
     flex-direction: column;
     gap: 2rem;
     text-align: left;
@@ -187,11 +188,16 @@ nav {
   }
 }
 
+section {
+  padding: 3rem 0;
+}
+
 .hero {
   background: {
     image: url(../imgs/hero-bg.png);
     repeat: no-repeat;
     size: cover;
+    position: center;
   }
   color: #fff;
   padding: 2rem 0;
