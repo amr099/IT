@@ -126,6 +126,7 @@ nav {
   margin-left: auto;
   gap: 2rem;
   justify-content: flex-end;
+
   a {
     border-bottom: 1px solid transparent;
     font: 1rem main-semibold;
@@ -136,9 +137,20 @@ nav {
     }
   }
 }
+.nav-icon {
+  position: absolute;
+  width: 3rem;
+  right: 3rem;
+  top: 3rem;
+  &:hover {
+    cursor: pointer;
+  }
+  z-index: 2;
+}
 
 @media (max-width: $tablet) {
   nav {
+    display: none;
     z-index: 1;
     width: 50%;
     position: fixed;
@@ -157,23 +169,11 @@ nav {
   }
 }
 
-.burger,
-.close {
-  width: 3rem;
-  position: absolute;
-  right: 3rem;
-  top: 3rem;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 @media (max-width: $mobile) {
   nav {
     width: 100%;
   }
-  .burger,
-  .close {
+  .nav-icon {
     width: 2rem;
     position: absolute;
     right: 1rem;

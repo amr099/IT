@@ -120,8 +120,20 @@ nav a:hover {
   border-color: #fff;
 }
 
+.nav-icon {
+  position: absolute;
+  width: 3rem;
+  right: 3rem;
+  top: 3rem;
+  z-index: 2;
+}
+.nav-icon:hover {
+  cursor: pointer;
+}
+
 @media (max-width: 1200px) {
   nav {
+    display: none;
     z-index: 1;
     width: 50%;
     position: fixed;
@@ -138,24 +150,11 @@ nav a:hover {
     font: 20px main-semibold;
   }
 }
-.burger,
-.close {
-  width: 3rem;
-  position: absolute;
-  right: 3rem;
-  top: 3rem;
-}
-.burger:hover,
-.close:hover {
-  cursor: pointer;
-}
-
 @media (max-width: 768px) {
   nav {
     width: 100%;
   }
-  .burger,
-  .close {
+  .nav-icon {
     width: 2rem;
     position: absolute;
     right: 1rem;
