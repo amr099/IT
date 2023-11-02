@@ -42,7 +42,7 @@ $xsmall: 360px;
 }
 
 body {
-  @include column(4rem);
+  overflow-x: hidden;
 }
 
 img {
@@ -148,6 +148,10 @@ nav {
   z-index: 2;
 }
 
+.close {
+  position: fixed;
+}
+
 @media (max-width: $tablet) {
   nav {
     display: none;
@@ -175,7 +179,6 @@ nav {
   }
   .nav-icon {
     width: 2rem;
-    position: absolute;
     right: 1rem;
     top: 1rem;
   }
@@ -260,7 +263,7 @@ section {
   .cards-wrapper {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
   .card {
     position: relative;
@@ -294,9 +297,14 @@ section {
 }
 
 @media (max-width: $mobile) {
-  .services .flex {
-    flex-direction: column;
+  .services {
+    .flex {
+      flex-direction: column;
+    }
   }
+}
+
+@media (max-width: $xsmall) {
 }
 
 .rates {
