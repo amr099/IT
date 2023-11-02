@@ -15,14 +15,12 @@ $(()=>{
 
     $('.burger').on('click',()=>{
         $('nav').addClass('flex')
-        $('nav').removeClass('hide')
-        $('.close').removeClass('hide')
+        $('nav, .close').removeClass('hide')
         $('.burger').addClass('hide')
     })
 
     $('.close').on('click',()=>{
-        $('nav').addClass('hide')
-        $('.close').addClass('hide')
+        $('nav, .close').addClass('hide')
         $('.burger').removeClass('hide')
     })
 })
