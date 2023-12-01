@@ -27,6 +27,7 @@
 
 :root {
     --main-clr: #132577;
+    overflow-x: hidden;
 }
 
 $mobile: 768px;
@@ -39,11 +40,14 @@ $xsmall: 360px;
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
     scroll-behavior: smooth;
-    overflow-x: hidden;
 }
 
 body {
     font-family: sans-serif;
+}
+
+main {
+    overflow-x: hidden;
 }
 
 img {
